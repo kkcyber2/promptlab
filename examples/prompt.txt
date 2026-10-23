@@ -1,0 +1,3 @@
+Extract the invoice total from the text below and reply with JSON only.
+
+Text: {{input}}

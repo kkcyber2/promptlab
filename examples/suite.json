@@ -1,0 +1,32 @@
+{
+  "name": "invoice-extraction",
+  "cases": [
+    {
+      "id": "usd-simple",
+      "input": "{\"total\": 42.50}",
+      "tags": ["extraction"],
+      "assertions": [
+        { "json_fields": ["total"] },
+        { "contains": "total" }
+      ]
+    },
+    {
+      "id": "eur-with-tax",
+      "input": "{\"total\": 100.00, \"tax\": 21.00}",
+      "tags": ["extraction", "tax"],
+      "assertions": [
+        { "json_fields": ["total", "tax"] },
+        { "not_contains": "error" }
+      ]
+    },
+    {
+      "id": "short-reply",
+      "input": "{\"total\": 7}",
+      "tags": ["format"],
+      "assertions": [
+        { "max_words": 20 },
+        { "regex": "\\{" }
+      ]
+    }
+  ]
+}
